@@ -1,6 +1,6 @@
 package com.hoan.algo2025.programmers.step0;
 
-import java.util.Arrays;
+import java.util.*;
 
 /**
  * 아무 원소도 들어있지 않은 빈 배열 X가 있습니다.
@@ -11,12 +11,11 @@ import java.util.Arrays;
  * X에서 마지막 arr[i]개의 원소를 제거한 뒤 X를 return 하는 solution 함수를 작성해 주세요.
  *
  *
- * List 사용
  */
 public class 빈_배열에_추가_삭제하기 {
     public static void main(String[] args) {
-        int [] arr = {};
-        boolean [] flag = {};
+        int [] arr = {3, 2, 4, 1, 3};
+        boolean [] flag = {true, false, true, false, false};
 
         int[] solution = solution(arr, flag);
 
@@ -24,7 +23,20 @@ public class 빈_배열에_추가_삭제하기 {
     }
 
     public static int[] solution(int[] arr, boolean[] flag) {
-        int[] answer = {};
-        return answer;
+        Deque<Integer> deque = new ArrayDeque<>();
+
+        for(int i=0; i<arr.length; i++) {
+            if(flag[i]) {
+                for(int j=0; j<(arr[i]*2); j++) {
+                    deque.add(arr[i]);
+                }
+            } else {
+                for(int j=0; j<arr[i]; j++) {
+                    deque.removeLast();
+                }
+            }
+        }
+
+        return deque.stream().mapToInt(Integer::intValue).toArray();
     }
 }
