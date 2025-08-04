@@ -18,24 +18,75 @@ package com.hoan.algo2025.programmers.step1;
  *
  * 이때 상품을 받을 직원의 수를 return 하도록 solution 함수를 완성해주세요.
  *
+ * 1 ≤ schedules의 길이 = n ≤ 1,000
+ * schedules[i]는 i + 1번째 직원이 설정한 출근 희망 시각을 의미합니다.
+ * 700 ≤ schedules[i] ≤ 1100
+ * 1 ≤ timelogs의 길이 = n ≤ 1,000
+ * timelogs[i]의 길이 = 7
+ * timelogs[i][j]는 i + 1번째 직원이 이벤트 j + 1일차에 출근한 시각을 의미합니다.
+ * 600 ≤ timelogs[i][j] ≤ 2359
+ * 1 ≤ startday ≤ 7
+ * 1은 월요일, 2는 화요일, 3은 수요일, 4는 목요일, 5는 금요일, 6은 토요일, 7은 일요일에 이벤트를 시작했음을 의미합니다.
+ * 출근 희망 시각과 실제로 출근한 시각을 100으로 나눈 나머지는 59 이하입니다.
+ *
+ *
  * schedules	timelogs	startday	result
  * [700, 800, 1100]	[[710, 2359, 1050, 700, 650, 631, 659], [800, 801, 805, 800, 759, 810, 809], [1105, 1001, 1002, 600, 1059, 1001, 1100]]	5	3
  * [730, 855, 700, 720]	[[710, 700, 650, 735, 700, 931, 912], [908, 901, 805, 815, 800, 831, 835], [705, 701, 702, 705, 710, 710, 711], [707, 731, 859, 913, 934, 931, 905]]	1	2
  */
 public class 유연_근무제 {
     public static void main(String[] args) {
-        int [] schedules = {700, 800, 1100};
-        int [][] timelogs = {{710, 2359, 1050, 700, 650, 631, 659}, {800, 801, 805, 800, 759, 810, 809}, {1105, 1001, 1002, 600, 1059, 1001, 1100}};
-        int startday = 5;
+//        int [] schedules = {700, 800, 1100};
+//        int [][] timelogs = {{710, 2359, 1050, 700, 650, 631, 659}, {800, 801, 805, 800, 759, 810, 809}, {1105, 1001, 1002, 600, 1059, 1001, 1100}};
+//        int startday = 5;
+
+        int [] schedules = {730, 855, 700, 720};
+        int [][] timelogs = {{710, 700, 650, 735, 700, 931, 912}, {908, 901, 805, 815, 800, 831, 835}, {705, 701, 702, 705, 710, 710, 711}, {707, 731, 859, 913, 934, 931, 905}};
+        int startday = 1;
 
         int solution = solution(schedules, timelogs, startday);
 
         System.out.println("solution = " + solution);
     }
 
+    // 1. 실제 출근 시간 <= (희망 시간 + 10)인 경우 ++
+    // 2. 다만, 주말인 경우 카운트 x
+    // 3. 그렇게 count가 5 이상이면 성공임
 
+    // +10할 때, 68처럼 이상한 결과값이 나올 수 있음!
+    // 그 부분을 처리해야 함.
     public static int solution(int[] schedules, int[][] timelogs, int startday) {
         int answer = 0;
+
+        for (int i = 0; i < timelogs.length; i++) {
+            int scheduled = schedules[i];
+            int scheduledHour = scheduled / 100;
+            int scheduledMin = scheduled % 100;
+            int scheduledLimit = scheduledHour * 60 + scheduledMin + 10;
+
+            int count = 0;
+            int day = startday;
+
+            for (int j = 0; j < 7; j++) {
+                if (day != 6 && day != 7) {
+                    int actual = timelogs[i][j];
+                    int actualHour = actual / 100;
+                    int actualMin = actual % 100;
+                    int actualTime = actualHour * 60 + actualMin;
+
+                    if (actualTime <= scheduledLimit) {
+                        count++;
+                    }
+                }
+                day++;
+                if (day == 8) day = 1;
+            }
+
+            if (count >= 5) {
+                answer++;
+            }
+        }
+
         return answer;
     }
 }
