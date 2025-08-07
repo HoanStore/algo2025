@@ -1,5 +1,7 @@
 package com.hoan.algo2025.programmers.step0;
 
+import java.util.Arrays;
+
 /**
  * 정수 배열 arr가 주어집니다.
  * arr의 각 원소에 대해 값이 50보다 크거나 같은 짝수라면 2로 나누고,
@@ -31,7 +33,7 @@ public class 조건에_맞게_수열_변환하기 {
         int answer = -1;
         int [] beforeArry = new int[arr.length];
 
-        while (!isSameArry(beforeArry, arr)) {
+        while (!Arrays.equals(beforeArry, arr)) {
             answer++;
             beforeArry = arr.clone();
 
