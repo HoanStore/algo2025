@@ -17,6 +17,8 @@ public class 코딩은_체육과목_입니다_25314 {
 
 
 
+
+
         sb.append(post);
 
         System.out.println(sb);
