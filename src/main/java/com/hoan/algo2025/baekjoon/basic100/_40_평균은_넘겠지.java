@@ -43,7 +43,4 @@ public class _40_평균은_넘겠지 {
         double result = Math.round((cnt / (double) studentPoint.length) * 100 * 1000) / 1000.0;
         return result + "%";    }
 
-
-
-
 }
