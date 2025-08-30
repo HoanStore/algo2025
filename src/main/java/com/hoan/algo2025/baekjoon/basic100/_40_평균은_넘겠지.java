@@ -44,4 +44,6 @@ public class _40_평균은_넘겠지 {
         return result + "%";    }
 
 
+
+
 }
