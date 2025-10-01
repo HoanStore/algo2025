@@ -10,13 +10,29 @@ class Node {
 }
 
 public class TreeDFS {
-    public static void dfs(Node node) {
+    // 전위 순회
+    public static void preorder(Node node) {
         if(node == null) return;
 
         System.out.print(node.value+ " ");
-        dfs(node.left);
-        dfs(node.right);
+        preorder(node.left);
+        preorder(node.right);
     }
+    //  중위 순회 - Inorder: Left → Root → Right
+    public static void inorder(Node node) {
+        if (node == null) return;
+        inorder(node.left);
+        System.out.print(node.value+ " ");
+        inorder(node.right);
+    }
+    // 후위 순회 - Postorder: Left → Right → Root
+    public static void postorder(Node node) {
+        if (node == null) return;
+        postorder(node.left);
+        postorder(node.right);
+        System.out.print(node.value + " ");
+    }
+
 
     public static void main(String[] args) {
         Node root = new Node(1);
@@ -27,7 +43,9 @@ public class TreeDFS {
         root.left.left = new Node(4);
         root.left.right = new Node(5);
 
-        dfs(root);
+//        dfs(root);
+        // inorder(root);
+        postorder(root);
     }
 
 
