@@ -34,6 +34,7 @@ public class 전국대회선발고사 {
 
         // 1, 2, 3등의 인덱스
 
+        //
 
 
         return answer;
