@@ -71,6 +71,7 @@ public class 약수들의_합 {
 
             } else {
                 bw.write(N +" is NOT perfect.");
+
             }
             bw.write("\n");
         }
