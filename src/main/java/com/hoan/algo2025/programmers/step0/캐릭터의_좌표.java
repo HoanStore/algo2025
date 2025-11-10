@@ -38,8 +38,11 @@ import java.util.Arrays;
  */
 public class 캐릭터의_좌표 {
     public static void main(String[] args) {
-        String [] keyinput = {"left", "right", "up", "right", "right"};
-        int [] board = {11, 11};
+//        String [] keyinput = {"left", "right", "up", "right", "right"};
+//        int [] board = {11, 11};
+
+        String [] keyinput = {"down", "down", "down", "down", "down"};
+        int [] board = {7, 9};
 
 
         int[] solution = solution(keyinput, board);
@@ -48,7 +51,28 @@ public class 캐릭터의_좌표 {
 
 
     public static int[] solution(String[] keyinput, int[] board) {
-        int[] answer = {};
-        return answer;
+        int x = 0;
+        int y = 0;
+
+        for(String key: keyinput) {
+
+            if(key.equals("left") && ((board[0] / 2) * -1) <= (x - 1) ) {
+                x = x - 1;
+            }
+
+            if(key.equals("right") && ((board[0] / 2)) >= (x + 1)) {
+                x = x + 1;
+            }
+
+            if(key.equals("up") && ((board[1] / 2)) >= (y + 1)) {
+                y = y + 1;
+            }
+
+            if(key.equals("down") && ((board[1] / 2) * -1) <= (y - 1)) {
+                y = y - 1;
+            }
+        }
+
+        return new int[]{x, y};
     }
 }
