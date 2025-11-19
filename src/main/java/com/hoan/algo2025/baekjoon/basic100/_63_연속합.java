@@ -33,4 +33,25 @@ public class _63_연속합 {
         System.out.println(maxSum);
 
     }
+
+    public static void gptSolution() {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+
+        int[] nums = new int[n];
+        for (int i = 0; i < n; i++) {
+            nums[i] = sc.nextInt();
+        }
+
+        int maxSum = nums[0];
+        int currentSum = nums[0];
+
+        for (int i = 1; i < n; i++) {
+            // 현재 원소 단독 vs 기존 연속합에 이어붙이기
+            currentSum = Math.max(nums[i], currentSum + nums[i]);
+            maxSum = Math.max(maxSum, currentSum);
+        }
+
+        System.out.println(maxSum);
+    }
 }
