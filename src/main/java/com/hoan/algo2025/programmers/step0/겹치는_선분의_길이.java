@@ -1,5 +1,7 @@
 package com.hoan.algo2025.programmers.step0;
 
+import java.util.Arrays;
+
 /**
  * 문제 설명
  * 선분 3개가 평행하게 놓여 있습니다.
@@ -23,16 +25,57 @@ package com.hoan.algo2025.programmers.step0;
  * [[0, 1], [2, 5], [3, 9]]	2
  * [[-1, 1], [1, 3], [3, 9]]	0
  * [[0, 5], [3, 9], [1, 10]]	8
+ *
+ * [0, 3] [1, 2] [1,3]
  */
 public class 겹치는_선분의_길이 {
     public static void main(String[] args) {
+        int[][] lines = {{0, 1}, {2, 5}, {3, 9}};
+        // int[][] lines = {{4, 10}, {2, 5}, {3, 9}};
 
-
+        int solution = mySolution(lines);
+        System.out.println("solution = " + solution);
     }
 
+    // lines의 길이가 3이라면
+    // 시간복잡도를 고민하지 않아도 충분히 풀 수 있음
+    // 첫번째 line부터 계산.
 
+    // 두 개 이상의 선분이 겹치는걸 계산하면 됨.
+    // 두 개 이상의 선분이 겹칠 때, 두 번째 긴 길이를 더하면 됨.
+    // 중복으로 더해지는걸 어떻게 처리할지 ..
     public static int solution(int[][] lines) {
         int answer = 0;
+
+        Arrays.sort(lines, (a, b) -> Integer.compare(a[0], b[0]));
+
+        for(int [] line: lines) {
+            System.out.println(Arrays.toString(line));
+        }
+
+        return answer;
+    }
+
+    // 배열 매핑 방식으로 푼다.
+    // 즉 범위를 모두 정함.
+    // 그리고 count에 값 넣는다.
+    public static int mySolution(int[][] lines) {
+        int[] count = new int[201]; // -100 ~ 100
+
+        for (int[] line : lines) {
+            int start = line[0] + 100;
+            int end = line[1] + 100;
+
+            for (int i = start; i < end; i++) {
+                count[i]++;
+            }
+        }
+
+        int answer = 0;
+        for (int i = 0; i < 200; i++) {
+            if (count[i] >= 2) answer++;
+        }
+
         return answer;
     }
 }
