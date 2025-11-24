@@ -29,6 +29,8 @@ public class 알고리즘_수행_시간_1 {
 
         int N = sc.nextInt();
 
+        System.out.println(1);
+        System.out.println(0);
 
     }
 }
