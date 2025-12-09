@@ -23,10 +23,43 @@ public class 체스판_다시_칠하기 {
             }
         }
 
-        int num1 = countChess(arr, 'B');
-        int num2 = countChess(arr, 'W');
+        int min = Integer.MAX_VALUE;
 
-        System.out.println(Math.min(num1, num2));
+        for(int i=0; i<arr.length; i++){
+            for(int j=0; j<arr[i].length; j++){
+                char [][] tempArr = makeArr(i, j, arr);
+
+                min =Math.min(countChess(tempArr, 'B'), min);
+                min =Math.min(countChess(tempArr, 'W'), min);
+            }
+        }
+
+        System.out.println(min);
+
+    }
+
+    private static char[][] makeArr(int x, int y, char[][] arr) {
+        char [][] answer = new char[8][8];
+
+        answer[0][0] = 'X';
+
+        if(x + 8 > arr.length) {
+            return answer;
+        }
+
+        if(y + 8 > arr[0].length) {
+            return answer;
+        }
+
+        // 짤라내기
+        for(int i=0; i<8; i++){
+            for(int j=0; j<8; j++){
+                answer[i][j]=arr[i+x][j+y];
+            }
+        }
+
+        return answer;
+
 
     }
 
@@ -58,12 +91,4 @@ public class 체스판_다시_칠하기 {
         return count;
     }
 
-    private static void printArr(char[][] arr) {
-        for(int i=0; i<arr.length; i++){
-            for(int j=0; j<arr[i].length; j++){
-                System.out.print(arr[i][j] + " ");
-            }
-            System.out.println();
-        }
-    }
 }
