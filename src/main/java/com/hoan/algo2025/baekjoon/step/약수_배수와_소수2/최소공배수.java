@@ -30,6 +30,8 @@ public class 최소공배수 {
 
         long gcd = calcGCD(a, b);
 
+
+
         System.out.println((a * b) / gcd);
     }
 
