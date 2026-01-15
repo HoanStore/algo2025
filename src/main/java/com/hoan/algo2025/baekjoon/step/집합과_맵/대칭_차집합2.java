@@ -4,7 +4,6 @@ package com.hoan.algo2025.baekjoon.step.집합과_맵;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * 자연수를 원소로 갖는 공집합이 아닌 두 집합 A와 B가 있다.
